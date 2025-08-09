@@ -1,0 +1,189 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+[](aurora_red)\
+$os\
+$username\
+[](bg:aurora_orange fg:aurora_red)\
+$directory\
+[](bg:aurora_yellow fg:aurora_orange)\
+$git_branch\
+$git_status\
+[](fg:aurora_yellow bg:aurora_green)\
+$c\
+$rust\
+$golang\
+$nodejs\
+$php\
+$java\
+$kotlin\
+$haskell\
+$python\
+[](fg:aurora_green bg:frost2)\
+$conda\
+[](fg:frost2 bg:frost3)\
+$time\
+[ ](fg:frost3)\
+$cmd_duration\
+$line_break\
+$character"""
+
+palette = 'nord'
+
+[os]
+disabled = false
+style = "bg:aurora_red fg:polar0"
+
+[os.symbols]
+Windows = ""
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "󰣛"
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
+
+[username]
+show_always = true
+style_user = "bg:aurora_red fg:polar0"
+style_root = "bg:aurora_red fg:polar0"
+format = '[ $user]($style)'
+
+[directory]
+style = "bg:aurora_orange fg:polar0"
+format = "[ $path ]($style)"
+truncation_length = 3
+truncation_symbol = "…/"
+
+[directory.substitutions]
+"Documents" = "󰈙 "
+"Downloads" = " "
+"Music" = "󰝚 "
+"Pictures" = " "
+"Developer" = "󰲋 "
+
+[git_branch]
+symbol = ""
+style = "bg:aurora_yellow"
+format = '[[ $symbol $branch ](fg:polar0 bg:aurora_yellow)]($style)'
+
+[git_status]
+style = "bg:aurora_yellow"
+format = '[[($all_status$ahead_behind )](fg:polar0 bg:aurora_yellow)]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:aurora_green"
+format = '[[ $symbol( $version) ](fg:polar0 bg:aurora_green)]($style)'
+
+[c]
+symbol = " "
+style = "bg:aurora_green"
+format = '[[ $symbol( $version) ](fg:polar0 bg:aurora_green)]($style)'
+
+[rust]
+symbol = ""
+style = "bg:aurora_green"
+format = '[[ $symbol( $version) ](fg:polar0 bg:aurora_green)]($style)'
+
+[golang]
+symbol = ""
+style = "bg:aurora_green"
+format = '[[ $symbol( $version) ](fg:polar0 bg:aurora_green)]($style)'
+
+[php]
+symbol = ""
+style = "bg:aurora_green"
+format = '[[ $symbol( $version) ](fg:polar0 bg:aurora_green)]($style)'
+
+[java]
+symbol = " "
+style = "bg:aurora_green"
+format = '[[ $symbol( $version) ](fg:polar0 bg:aurora_green)]($style)'
+
+[kotlin]
+symbol = ""
+style = "bg:aurora_green"
+format = '[[ $symbol( $version) ](fg:polar0 bg:aurora_green)]($style)'
+
+[haskell]
+symbol = ""
+style = "bg:aurora_green"
+format = '[[ $symbol( $version) ](fg:polar0 bg:aurora_green)]($style)'
+
+[python]
+symbol = ""
+style = "bg:aurora_green"
+format = '[[ $symbol( $version)(\(#$virtualenv\)) ](fg:polar0 bg:aurora_green)]($style)'
+
+[docker_context]
+symbol = ""
+style = "bg:frost2"
+format = '[[ $symbol( $context) ](fg:polar0 bg:frost2)]($style)'
+
+[conda]
+symbol = "  "
+style = "fg:polar0 bg:frost2"
+format = '[$symbol$environment ]($style)'
+ignore_base = false
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bg:frost3"
+format = '[[  $time ](fg:polar0 bg:frost3)]($style)'
+
+[line_break]
+disabled = true
+
+[character]
+disabled = false
+success_symbol = '[❯](bold fg:aurora_green)'
+error_symbol = '[❯](bold fg:aurora_red)'
+vimcmd_symbol = '[❮](bold fg:aurora_green)'
+vimcmd_replace_one_symbol = '[❮](bold fg:frost3)'
+vimcmd_replace_symbol = '[❮](bold fg:frost3)'
+vimcmd_visual_symbol = '[❮](bold fg:aurora_yellow)'
+
+[cmd_duration]
+show_milliseconds = true
+format = " in $duration "
+style = "bg:frost3"
+disabled = false
+show_notifications = true
+min_time_to_notify = 45000
+
+[palettes.nord]
+# Polar Night
+polar0 = "#2e3440"
+polar1 = "#3b4252"
+polar2 = "#434c5e"
+polar3 = "#4c566a"
+# Snow Storm
+snow0  = "#d8dee9"
+snow1  = "#e5e9f0"
+snow2  = "#eceff4"
+# Frost
+frost0 = "#8fbcbb"
+frost1 = "#88c0d0"
+frost2 = "#81a1c1"
+frost3 = "#5e81ac"
+# Aurora
+aurora_red    = "#bf616a"
+aurora_orange = "#d08770"
+aurora_yellow = "#ebcb8b"
+aurora_green  = "#a3be8c"
+aurora_purple = "#b48ead"
+

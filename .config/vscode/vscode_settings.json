@@ -1,0 +1,113 @@
+// This is a Visual Studio Code user settings file (settings.json).
+// It customizes editor behavior, appearance, and extension configurations.
+// 
+// Key highlights:
+// - Editor: Enables smooth cursor animation, custom fonts, bracket colorization, word wrapping at 100 columns, and format on save.
+// - Diff Editor: Hides unchanged regions for easier code review.
+// - File Management: Autosaves files after a delay and disables delete confirmations.
+// - Git: Enables automatic fetching of changes.
+// - LaTeX Workshop: Extensive configuration for building, linting, formatting, and viewing LaTeX documents, including custom recipes and PDF viewer settings.
+// - Python: Sets type checking mode to "standard" and disables environment creation prompts.
+// - Security: Automatically opens untrusted files in workspace trust mode.
+// - Workbench: Applies custom color, icon, and product icon themes.
+// - Language-specific: Sets default formatters for LaTeX, shell scripts, and JSONC files.
+// - GitHub Copilot: Enables next edit suggestions.
+// - Editor font size is set to 13.
+//
+// Adjust these settings to personalize your VS Code experience and optimize workflows for LaTeX, Python, and shell scripting.
+{
+  "diffEditor.hideUnchangedRegions.enabled": true,
+  "editor.acceptSuggestionOnCommitCharacter": false,
+  "editor.acceptSuggestionOnEnter": "smart",
+  "editor.accessibilitySupport": "off",
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.autoIndent": "full",
+  "editor.autoSurround": "languageDefined",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "editor.codeActions.triggerOnFocusChange": true,
+  "editor.codeLens": true,
+  "editor.cursorBlinking": "smooth",
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.cursorSurroundingLines": 3,
+  "editor.cursorSurroundingLinesStyle": "all",
+  "editor.fontFamily": "SpaceMono Nerd Font, Google Sans Code, JetBrainsMono Nerd Font Mono",
+  "editor.formatOnSave": true,
+  "editor.inlineSuggest.fontFamily": "SpaceMono Nerd Font, Google Sans Code, JetBrainsMono Nerd Font Mono",
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 100,
+  "explorer.confirmDelete": false,
+  "files.autoSave": "afterDelay",
+  "git.autofetch": true,
+  "latex-utilities.liveReformat.enabled": true,
+  "latex-utilities.message.update.show": false,
+  "latex-workshop.bibtex-fields.sort.enabled": true,
+  "latex-workshop.bibtex-format.sort.enabled": true,
+  "latex-workshop.bibtex-format.tab": "4 spaces",
+  "latex-workshop.bibtex-format.trailingComma": true,
+  "latex-workshop.bind.altKeymap.enabled": true,
+  "latex-workshop.formatting.latex": "latexindent",
+  "latex-workshop.intellisense.package.unusual": true,
+  "latex-workshop.intellisense.subsuperscript.enabled": true,
+  "latex-workshop.intellisense.unimathsymbols.enabled": true,
+  "latex-workshop.intellisense.update.aggressive.enabled": true,
+  "latex-workshop.latex.autoBuild.run": "never",
+  "latex-workshop.latex.autoClean.run": "onFailed",
+  "latex-workshop.latex.build.rootfileInStatus": true,
+  "latex-workshop.latex.clean.subfolder.enabled": true,
+  "latex-workshop.latex.recipe.default": "latexmk (lualatex)",
+  "latex-workshop.latex.watch.delay": 5000,
+  "latex-workshop.latex.watch.pdf.delay": 10000,
+  "latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize": 4,
+  "latex-workshop.linting.chktex.enabled": true,
+  "latex-workshop.showContextMenu": true,
+  "latex-workshop.synctex.afterBuild.enabled": true,
+  "latex-workshop.synctex.indicator": "circle",
+  "latex-workshop.texcount.autorun": "onSave",
+  "latex-workshop.view.autoFocus.enabled": true,
+  "latex-workshop.view.outline.follow.editor": false,
+  "latex-workshop.view.outline.sync.viewer": true,
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex.formatter.columnLimit": 100,
+  "python.analysis.typeCheckingMode": "standard",
+  "security.workspace.trust.untrustedFiles": "open",
+  "window.confirmSaveUntitledWorkspace": false,
+  "workbench.colorTheme": "Nord",
+  "workbench.iconTheme": "catppuccin noctis icons",
+  "workbench.productIconTheme": "material-product-icons",
+  "[latex]": {
+    "editor.defaultFormatter": "James-Yu.latex-workshop"
+  },
+  "latex-workshop.linting.chktex.exec.args": [
+    "-wall",
+    "-n22",
+    "-n30",
+    "-e16",
+    "-q",
+    "-n46"
+  ],
+  "[shellscript]": {
+    "editor.defaultFormatter": "shakram02.bash-beautify"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "editor.fontSize": 14,
+  "geminicodeassist.codeGenerationPaneViewEnabled": true,
+  "python.createEnvironment.trigger": "off",
+  "redhat.telemetry.enabled": true,
+  "vim.easymotion": true,
+  "vim.enableNeovim": true,
+  "catppuccin-noctis-icons.hidesExplorerArrows": false,
+  "git.enableSmartCommit": true,
+  "markdown-preview-github-styles.darkTheme": "dark_dimmed",
+  "explorer.confirmDragAndDrop": false,
+  "git.openRepositoryInParentFolders": "always",
+  "catppuccin.accentColor": "blue",
+  "editor.minimap.maxColumn": 100,
+  "editor.accessibilityPageSize": 1,
+  "window.titleBarStyle": "native",
+  "git.confirmSync": false
+}

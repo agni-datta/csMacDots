@@ -1,0 +1,90 @@
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Backup and temporary files
+*.bak
+*.backup
+*~
+*.log
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Cache directories
+.cache/
+cache/
+
+# Shell state (auto-generated, machine-specific)
+.zcompdump
+.zcompdump.*
+.zsh_history
+.fzf.zsh
+
+# GNU PG (private keys must never be committed)
+.gnupg/
+
+# Python package manager state
+.cpan/
+
+# AI/IDE tool state (auto-managed, not hand-edited)
+.antigravity/
+.claude/
+.claude.json
+.cursor/
+.gemini/
+.windsurf/
+.redhat/
+.local/
+
+# Raycast extension bundles (auto-updated by Raycast)
+.config/raycast/extensions/
+
+# VSCode / Cursor / Windsurf workspace state
+.config/cursor/
+.config/vscode/
+.config/devin/
+.config/opencode/
+.config/github-copilot/
+
+# Tool data/state directories (not config)
+.config/gh/
+.config/homebrew/
+
+# Large user content directories
+Drive/
+Library/
+Applications/
+Movies/
+Music/
+Pictures/
+Public/
+Google Drive
+
+# Personal sensitive files
+secrets/
+private/
+.env
+.env.local
+.env.*
+
+# XnViewMP database (machine-local)
+.config/xnviewmp/Thumb.db
+.config/xnviewmp/XnView.db
+.config/xnviewmp/xnview.ini
