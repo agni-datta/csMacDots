@@ -1,236 +1,301 @@
 ################################################################################
-# ~/.zshrc — macOS, organized, documented
-# Goal: Fast startup, robust history, fuzzy completion, minimal plugins.
-# All sections are self-contained and safe to source multiple times.
+# ~/.zshrc — Optimized macOS Zsh Configuration
 ################################################################################
 
 ################################################################################
-# 0) macOS Environment Setup
+# Environment & PATH
 ################################################################################
-# Purpose: Set up core environment variables and PATH for macOS tools.
 
-# Homebrew: Add Homebrew to PATH if installed (Apple Silicon default path)
-if [[ -f "/opt/homebrew/bin/brew" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
+# Prevent duplicate PATH entries
+typeset -U path PATH
+
+# Homebrew (Apple Silicon)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  export HOMEBREW_PREFIX="/opt/homebrew"
+
+  path=(
+    "$HOMEBREW_PREFIX/bin"
+    "$HOMEBREW_PREFIX/sbin"
+    $path
+  )
 fi
 
-# MacPorts: Add MacPorts to PATH if installed (optional, rarely used on macOS)
-if [[ -d /opt/local/bin ]]; then
-    export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
+# User binaries
+path=(
+  "$HOME/.local/bin"
+  "$HOME/.antigravity/antigravity/bin"
+  /opt/local/bin
+  /opt/local/sbin
+  $path
+)
+
+export PATH
+
+# Editors
+export EDITOR="nvim"
+export VISUAL="nvim"
+
+# eza
+export EZA_CONFIG_DIR="$HOME/.config/eza"
+
+# GPG
+export GPG_TTY="$(tty)"
+
+# Better colors
+if command -v vivid &>/dev/null; then
+  export LS_COLORS="$(vivid generate catppuccin-mocha)"
 fi
 
-# Codeium (Windsurf): Prepend Codeium binaries to PATH
-export PATH="${HOME}/.codeium/windsurf/bin:${PATH}"
-
-# pipx: User-installed CLI tools
-export PATH="${HOME}/.local/bin:${PATH}"
-
-# Antigravity: Prepend Antigravity binaries to PATH
-export PATH="${HOME}/.antigravity/antigravity/bin:${PATH}"
-
 ################################################################################
-# 1) Shell Mode and Keymap
+# Shell Behavior
 ################################################################################
-# Use the emacs keymap as a base for Zsh line editing.
+
 bindkey -e
+zmodload zsh/complist
+
+# Report commands taking >3s
+REPORTTIME=3
+
+# Better shell behavior
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_SILENT
+setopt INTERACTIVE_COMMENTS
+setopt EXTENDED_GLOB
+setopt NO_BEEP
 
 ################################################################################
-# 2) Early Environment and Python Virtualenv
+# History
 ################################################################################
-# Purpose: Define PATH and activate Python venv before plugins alter state.
 
-# Python venv: Auto-activate if the specific venv exists.
-[[ -f "${HOME}/PyPiP/bin/activate" ]] && source "${HOME}/PyPiP/bin/activate"
-
-# Time reporting: Print elapsed time for commands taking >1s.
-REPORTTIME=1
-
-################################################################################
-# 3) History Settings
-################################################################################
-# Purpose: Durable, deduplicated, and shareable history across sessions.
-
+HISTFILE="$HOME/.zsh_history"
 HISTSIZE=50000
-SAVEHIST=$HISTSIZE
-HISTFILE="${HOME}/.zsh_history"
+SAVEHIST=50000
 
-# History deduplication and behavior options.
-setopt APPEND_HISTORY          # Append rather than overwrite.
-setopt SHARE_HISTORY           # Merge history across sessions.
-setopt HIST_IGNORE_ALL_DUPS    # Drop older duplicates.
-setopt HIST_IGNORE_DUPS        # Ignore immediate duplicate entries.
-setopt HIST_IGNORE_SPACE       # Ignore commands starting with a space.
-setopt HIST_FIND_NO_DUPS       # Avoid duplicate matches in search.
-setopt HIST_SAVE_NO_DUPS       # Do not write duplicates to file.
+setopt \
+  APPEND_HISTORY \
+  SHARE_HISTORY \
+  HIST_IGNORE_ALL_DUPS \
+  HIST_IGNORE_DUPS \
+  HIST_IGNORE_SPACE \
+  HIST_FIND_NO_DUPS \
+  HIST_SAVE_NO_DUPS \
+  HIST_REDUCE_BLANKS \
+  HIST_VERIFY \
+  HIST_EXPIRE_DUPS_FIRST \
+  INC_APPEND_HISTORY
 
 ################################################################################
-# 4) fzf Setup (Fuzzy Finder Integration)
+# Completion Settings
 ################################################################################
-# Purpose: Consistent color previews and default options for fzf.
 
-# fzf-tab: Preview files when completing `cd` and `zoxide` targets.
-zstyle ':fzf-tab:complete:cd:*'           fzf-preview 'eza --color=always "$realpath"'
-zstyle ':fzf-tab:complete:__zoxide_z:*'   fzf-preview 'eza --color=always "$realpath"'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list \
+  'm:{a-zA-Z}={A-Za-z}'
 
-# fzf default color scheme (Catppuccin-like).
-export FZF_DEFAULT_OPTS=" \
---color=bg+:#3B4252,bg:#2E3440,spinner:#8FBCBB,hl:#81A1C1 \
---color=fg:#ECEFF4,header:#8FBCBB,info:#A3BE8C,pointer:#BF616A \
---color=marker:#EBCB8B,fg+:#ECEFF4,prompt:#88C0D0,hl+:#B48EAD \
---color=selected-bg:#434C5E \
---color=border:#4C566A,label:#D8DEE9"
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path "$HOME/.zcompcache"
 
-# fzf init: Load user install script if fzf is present.
-if command -v fzf &>/dev/null && [[ -f "${HOME}/.fzf.zsh" ]]; then
-  source "${HOME}/.fzf.zsh"
+zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' group-name ''
+
+################################################################################
+# fzf
+################################################################################
+
+export FZF_DEFAULT_COMMAND='fd --type f --strip-cwd-prefix'
+
+export FZF_DEFAULT_OPTS="
+--height=40%
+--layout=reverse
+--border
+--preview 'bat --color=always --style=numbers --line-range=:500 {}'
+--color=bg+:#3B4252,bg:#2E3440,spinner:#8FBCBB,hl:#81A1C1
+--color=fg:#ECEFF4,header:#8FBCBB,info:#A3BE8C,pointer:#BF616A
+--color=marker:#EBCB8B,fg+:#ECEFF4,prompt:#88C0D0,hl+:#B48EAD
+--color=selected-bg:#434C5E
+--color=border:#4C566A,label:#D8DEE9
+"
+
+[[ -f "$HOME/.fzf.zsh" ]] && source "$HOME/.fzf.zsh"
+
+################################################################################
+# Zinit
+################################################################################
+
+ZINIT_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/zinit/zinit.git"
+
+if [[ ! -d "$ZINIT_HOME" ]]; then
+  mkdir -p "${ZINIT_HOME:h}"
+  git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
-################################################################################
-# 5) Zinit Plugin Management (Fast Plugin Loader)
-################################################################################
-# Purpose: On-demand plugin install and load with minimal overhead.
+if [[ -f "$ZINIT_HOME/zinit.zsh" ]]; then
+  source "$ZINIT_HOME/zinit.zsh"
 
-# Zinit install path.
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+  zinit ice blockf
+  zinit light zsh-users/zsh-completions
 
-# Install zinit if missing.
-if [[ ! -d "${ZINIT_HOME}" ]]; then
-  mkdir -p "$(dirname "${ZINIT_HOME}")"
-  git clone https://github.com/zdharma-continuum/zinit.git "${ZINIT_HOME}"
-fi
-
-# Load zinit and core completions, then declare plugins.
-if [[ -f "${ZINIT_HOME}/zinit.zsh" ]]; then
-  source "${ZINIT_HOME}/zinit.zsh"
-
-  # Rebuild completion dump at most once per day.
   autoload -Uz compinit
-  _zcompdump="${ZDOTDIR:-$HOME}/.zcompdump"
-  if [[ ! -f "$_zcompdump" || -n "$( find "$_zcompdump" -mmin +1440 2>/dev/null )" ]]; then
+
+  if [[ -n ~/.zcompdump(#qN.mh+24) ]]; then
     compinit
+    zcompile ~/.zcompdump
   else
     compinit -C
   fi
 
-  # Lightweight, commonly used plugins.
-  zinit light zsh-users/zsh-syntax-highlighting
-  zinit light zsh-users/zsh-completions
-  zinit light zsh-users/zsh-autosuggestions
+  # fzf-tab
   zinit light Aloxaf/fzf-tab
+
+  # Git helpers
+  zinit snippet OMZL::git.zsh
+
+  # Autosuggestions
+  zinit ice wait lucid atload'_zsh_autosuggest_start'
+  zinit light zsh-users/zsh-autosuggestions
+
+  # Autopair
+  zinit ice wait lucid
   zinit light hlissner/zsh-autopair
 
-  # Oh-My-Zsh plugin snippets via zinit.
-  zinit snippet OMZP::brew
-  zinit snippet OMZP::colored-man-pages
-  zinit snippet OMZP::colorize
-  zinit snippet OMZP::command-not-found
-  zinit snippet OMZP::common-aliases
-  zinit snippet OMZP::eza
-  zinit snippet OMZP::git
-  zinit snippet OMZL::git.zsh
-  zinit snippet OMZP::kitty
-  zinit snippet OMZP::pip
-  zinit snippet OMZP::python
-  zinit snippet OMZP::rsync
-  zinit snippet OMZP::sudo
-  zinit snippet OMZP::zsh-interactive-cd
-
-  # Restore working directories from previous session.
-  zinit cdreplay -q
+  # Fast syntax highlighting (lighter than zsh-syntax-highlighting)
+  zinit ice wait lucid
+  zinit light zdharma-continuum/fast-syntax-highlighting
 fi
 
 ################################################################################
-# 6) External Tools and Integrations
+# Prompt (Lazy Loaded)
 ################################################################################
-# starship: Fast, customizable prompt.
-if command -v starship &>/dev/null; then
+
+starship_precmd() {
   eval "$(starship init zsh)"
+  add-zsh-hook -d precmd starship_precmd
+}
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd starship_precmd
+
+################################################################################
+# zoxide (Lazy Loaded)
+################################################################################
+
+if command -v zoxide &>/dev/null; then
+  function cd() {
+    unfunction cd
+    eval "$(zoxide init zsh --cmd cd)"
+    cd "$@"
+  }
 fi
 
 ################################################################################
-# 7) Aliases and Small Helpers
+# bat
 ################################################################################
-# Purpose: Short, memorable commands for frequent actions.
 
-# Default editor
-export EDITOR="nvim"
-export VISUAL="nvim"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+################################################################################
+# Aliases
+################################################################################
 
 # Navigation
-alias home='cd ~'
-alias desktop='cd ~/Desktop'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
+alias home='cd ~'
+alias desktop='cd ~/Desktop'
 
-# Info and utilities
+# Utilities
+alias c='clear'
 alias h='history'
 alias df='df -h'
 alias du='du -sh'
 alias today='date "+%Y-%m-%d"'
 alias now='date "+%H:%M:%S"'
-alias getip='curl ifconfig.me'
+alias getip='curl -s ifconfig.me'
+
+# Editors
+alias vi='nvim'
+alias vim='nvim'
 
 # Monitoring
 alias top='btop'
 alias cpu='btop'
 
-# Listing with eza
-alias l='eza -lh'
-alias l2='eza -lh --tree --level=2'
-alias ll='eza -alF'
-alias ls='eza --color=auto'
-alias lsa='eza -A'
+# eza
+alias ls='eza --color=auto --icons=auto'
+alias l='eza -lh --icons=auto'
+alias la='eza -a --icons=auto'
+alias ll='eza -alF --icons=auto'
+alias lsa='eza -A --icons=auto'
+alias tree='eza --tree --icons=auto'
 
-# Quality of life
-alias c='clear'
+# Misc
 alias cat='bat'
+alias grep='rg'
 alias venv='source ~/PyPiP/bin/activate'
-alias vi='nvim'
-alias vim='nvim'
 alias pdf-build='latexmk -pdf -lualatex'
 
-# mkz: Create a directory and enter it using zoxide
+################################################################################
+# Functions
+################################################################################
+
 mkz() {
-  mkdir -p -- "$1" && cd -- "$1" || return
+  [[ -z "$1" ]] && return 1
+  mkdir -p -- "$1" && cd -- "$1"
+}
+
+extract() {
+  if [[ -f "$1" ]]; then
+    case "$1" in
+    *.tar.bz2) tar xjf "$1" ;;
+    *.tar.gz) tar xzf "$1" ;;
+    *.bz2) bunzip2 "$1" ;;
+    *.rar) unrar x "$1" ;;
+    *.gz) gunzip "$1" ;;
+    *.tar) tar xf "$1" ;;
+    *.tbz2) tar xjf "$1" ;;
+    *.tgz) tar xzf "$1" ;;
+    *.zip) unzip "$1" ;;
+    *.Z) uncompress "$1" ;;
+    *.7z) 7z x "$1" ;;
+    *) echo "Cannot extract $1" ;;
+    esac
+  else
+    echo "$1 is not a valid file"
+  fi
 }
 
 ################################################################################
-# 8) Editing Keys for Kitty Terminal (macOS)
+# Kitty Keybindings
 ################################################################################
-# Purpose: Interpret Kitty's escape sequences inside ZLE for line editing.
-# Baseline: Kitty sends these sequences per your kitty.conf mappings.
 
-# Forward Delete
 bindkey '^[[3~' delete-char
-
-# Insert
 bindkey '^[[2~' overwrite-mode
 
-# Home / End
 bindkey '^[[H' beginning-of-line
 bindkey '^[[F' end-of-line
 
-# Alternates (some terminfo variants)
 bindkey '^[[1~' beginning-of-line
 bindkey '^[[4~' end-of-line
 
-# Page Up / Page Down — history search by prefix
 bindkey '^[[5~' history-beginning-search-backward
 bindkey '^[[6~' history-beginning-search-forward
 
-# GPG Agent: Use graphical pinentry for GPG on macOS
-GPG_TTY=$(tty)
-export GPG_TTY
+################################################################################
+# fzf-tab
+################################################################################
 
-# eza: Customize the appearance of the ls command
-export EZA_CONFIG_DIR="$HOME/.config/eza"
+zstyle ':fzf-tab:complete:cd:*' \
+  fzf-preview 'eza --color=always --icons=always "$realpath"'
+
+zstyle ':fzf-tab:complete:__zoxide_z:*' \
+  fzf-preview 'eza --color=always --icons=always "$realpath"'
+
+zstyle ':fzf-tab:*' switch-group ',' '.'
 
 ################################################################################
-# End of ~/.zshrc (macOS)
-# zoxide must be last — it hooks `cd` and anything after it could shadow that.
+# End
 ################################################################################
-# zoxide: Smarter `cd` with frecency ranking; replaces the built-in cd.
-if command -v zoxide &>/dev/null; then
-  eval "$(zoxide init zsh --cmd cd)"
-fi

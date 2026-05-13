@@ -1,62 +1,62 @@
 {
-  "$schema" : "https:\/\/schema.linearmouse.app\/0.10.2",
-  "schemes" : [
+  "$schema": "https:\/\/schema.linearmouse.app\/0.10.2",
+  "schemes": [
     {
-      "if" : {
-        "device" : {
-          "category" : "mouse",
-          "productID" : "0x250d",
-          "productName" : "Dell Mouse MS3320W",
-          "vendorID" : "0x413c"
+      "if": {
+        "device": {
+          "category": "mouse",
+          "productID": "0x250d",
+          "productName": "Dell Mouse MS3320W",
+          "vendorID": "0x413c"
         }
       },
-      "scrolling" : {
-        "reverse" : {
-          "vertical" : true
+      "scrolling": {
+        "reverse": {
+          "vertical": true
         }
       }
     },
     {
-      "if" : {
-        "device" : {
-          "category" : "mouse",
-          "productID" : "0xd033",
-          "productName" : "Keychron M3",
-          "serialNumber" : "SN1234567890",
-          "vendorID" : "0x3434"
+      "if": {
+        "device": {
+          "category": "mouse",
+          "productID": "0xd033",
+          "productName": "Keychron M3",
+          "serialNumber": "SN1234567890",
+          "vendorID": "0x3434"
         }
       },
-      "scrolling" : {
-        "reverse" : {
-          "vertical" : true
+      "scrolling": {
+        "reverse": {
+          "vertical": true
         }
       }
     },
     {
-      "buttons" : {
-        "universalBackForward" : true
+      "buttons": {
+        "universalBackForward": true
       },
-      "if" : {
-        "device" : {
-          "category" : "mouse",
-          "productID" : "0xc53f",
-          "productName" : "USB Receiver",
-          "vendorID" : "0x46d"
+      "if": {
+        "device": {
+          "category": "mouse",
+          "productID": "0xc53f",
+          "productName": "USB Receiver",
+          "vendorID": "0x46d"
         }
       },
-      "pointer" : {
-        "redirectsToScroll" : false,
-        "speed" : 0.5
+      "pointer": {
+        "redirectsToScroll": false,
+        "speed": 0.5
       },
-      "scrolling" : {
-        "acceleration" : {
-          "vertical" : 1.99
+      "scrolling": {
+        "acceleration": {
+          "vertical": 1.99
         },
-        "reverse" : {
-          "vertical" : true
+        "reverse": {
+          "vertical": true
         },
-        "speed" : {
-          "vertical" : 32
+        "speed": {
+          "vertical": 32
         }
       }
     }
