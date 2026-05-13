@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# csDots - Mac Dotfiles Update Script
+# csMacDots - MacOS Dotfiles Update Script
 # Description: Automatically updates and syncs dotfiles using yadm
 # Author: agnid
-# Repository: https://github.com/agni-datta/csDots
+# Repository: https://github.com/agni-datta/csMacDots
 
 set -e # Exit on any error
 
@@ -157,7 +157,7 @@ done
 
 # Main execution
 main() {
-  print_status "Starting csDots update process..."
+  print_status "Starting csMacDots update process..."
   echo
 
   # Check if yadm is available
@@ -200,7 +200,7 @@ main() {
   fi
 
   echo
-  print_success "csDots update process completed!"
+  print_success "csMacDots update process completed!"
 
   # Show final status unless quiet mode
   if [[ "$QUIET" == false ]]; then

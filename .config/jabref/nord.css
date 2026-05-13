@@ -1,247 +1,416 @@
 .root {
-  /* Nord palette anchors */
-  -jr-theme: #5e81ac;            /* Frost blue-dark (darkest Nord blue) */
-  -jr-accent: #5e81ac;
+  /*
+     Nord Theme — High Contrast
+  */
+
+  /* Nord base palette */
+  -nord0: #2e3440;
+  -nord1: #3b4252;
+  -nord2: #434c5e;
+  -nord3: #4c566a;
+
+  -nord4: #d8dee9;
+  -nord5: #e5e9f0;
+  -nord6: #eceff4;
+
+  -nord7: #8fbcbb;
+  -nord8: #88c0d0;
+  -nord9: #81a1c1;
+  -nord10: #5e81ac;
+
+  -nord11: #bf616a;
+  -nord12: #d08770;
+  -nord13: #ebcb8b;
+  -nord14: #a3be8c;
+  -nord15: #b48ead;
+
+  /*
+     Core Theme Variables
+  */
+
+  -jr-theme: -nord10;
+  -jr-accent: -nord9;
   -jr-selected: -jr-accent;
-  -jr-hover: #3b4252;            /* Polar Night 1 */
 
-  -jr-row-odd-background: #2e3440;  /* Polar Night 0 */
-  -jr-row-even-background: #3b4252; /* Polar Night 1 */
-  -jr-accent-alt: #81a1c1;       /* Frost blue */
+  -jr-hover: #4c566a;
 
-  -jr-red: #bf616a;              /* Aurora red */
-  -jr-light-red: #d08770;        /* Aurora orange (closest light variant) */
-  -jr-green: #a3be8c;            /* Aurora green */
-  -jr-light-green: #8fbcbb;      /* Frost teal */
-  -jr-blue: #5e81ac;             /* Frost blue-dark */
-  -jr-light-blue: #81a1c1;       /* Frost blue */
-  -jr-purple: #b48ead;           /* Aurora purple */
-  -jr-light-purple: #b48ead;     /* no lighter official; reuse */
-  -jr-yellow: #ebcb8b;           /* Aurora yellow */
-  -jr-orange: #d08770;           /* Aurora orange */
+  -jr-row-odd-background: #2b313d;
+  -jr-row-even-background: #313845;
 
-  -jr-base: #2e3440;
+  -jr-accent-alt: -nord8;
 
-  -jr-background-alt: #2e3440;
-  -jr-menu-background: #3b4252;
-  -jr-toolbar: -jr-menu-background;
-  -jr-sidepane-background: #3b4252;
-  -jr-search-background: #3b4252;
+  -jr-red: -nord11;
+  -jr-light-red: -nord12;
 
-  -jr-sidepane-header-background: -jr-background-alt;
-  -jr-group-hits-bg: -jr-background-alt;
-  -jr-group-hits-fg: -fx-light-text-color;
+  -jr-green: -nord14;
+  -jr-light-green: -nord7;
+
+  -jr-blue: -nord10;
+  -jr-light-blue: -nord9;
+
+  -jr-purple: -nord15;
+  -jr-light-purple: #c895bf;
+
+  -jr-yellow: -nord13;
+  -jr-orange: -nord12;
+
+  -jr-base: -nord0;
+
+  /*
+     Backgrounds
+  */
+
+  -jr-background-alt: -nord0;
+  -jr-menu-background: -nord1;
+  -jr-toolbar: -nord1;
+  -jr-sidepane-background: #323a48;
+  -jr-search-background: #3a4353;
+
+  -jr-sidepane-header-background: -nord0;
+
+  -jr-group-hits-bg: -nord1;
+  -jr-group-hits-fg: -nord6;
+
   -fx-control-inner-background: #3b4252;
+  -fx-control-inner-background-alt: #434c5e;
 
-  -fx-control-inner-background-alt: -fx-control-inner-background;
+  /*
+     Text
+  */
 
-  -fx-dark-text-color: #eceff4;  /* Polar Night 3 */
-  -fx-mid-text-color: #eceff4;
-  -fx-light-text-color: #eceff4; /* Snow Storm 2 */
+  -fx-dark-text-color: #eceff4;
+  -fx-mid-text-color: #e5e9f0;
+  -fx-light-text-color: #d8dee9;
+
+  -jr-menu-foreground: -nord6;
+  -jr-menu-item-foreground: -nord6;
+
+  /*
+     Borders / Separators
+  */
+
   -jr-separator: #4c566a;
   -fx-outer-border: #4c566a;
 
-  -jr-icon: -fx-light-text-color;
-  -jr-icon-active: derive(-fx-light-text-color, 50%);
-  -jr-icon-background-active: -jr-hover;
-  -jr-icon-background-armed: #4c566a;
+  /*
+     Icons
+  */
 
-  -jr-menu-foreground: -fx-light-text-color;
-  -jr-menu-item-foreground: -fx-light-text-color;
+  -jr-icon: -nord6;
+  -jr-icon-active: #ffffff;
 
-  -jr-scrollbar-thumb: -fx-light-text-color;
-  -jr-scrollbar-track: derive(-fx-control-inner-background, -90%);
+  -jr-icon-background-active: #4c566a;
+  -jr-icon-background-armed: #5a657a;
 
-  -fx-focused-text-base-color: -fx-dark-text-color;
+  /*
+     Scrollbars
+  */
 
-  -jr-tooltip-fg: derive(-fx-light-text-color, 50%);
+  -jr-scrollbar-thumb: #6c7a96;
+  -jr-scrollbar-track: #2a2f3a;
 
-  -jr-drag-target: -jr-accent;
-  -jr-drag-target-hover: -jr-accent;
+  /*
+     Focus / Selection
+  */
 
-  -js-summary-text-color: derive(-fx-light-text-color, 70%);
-  -js-summary-text-color-selected: derive(-fx-dark-text-color, 70%);
+  -fx-focused-text-base-color: #ffffff;
 
-  /* Typography */
-  -fx-font-family: "SpaceMono Nerd Font", monospace, serif, sans-serif;
+  -jr-accent-contrast: #ffffff;
+
+  -fx-selection-bar: #5e81ac;
+  -fx-selection-bar-non-focused: #4c6f96;
+  -fx-selection-bar-text: #ffffff;
+
+  -fx-highlight-fill: #5e81ac;
+  -fx-highlight-text-fill: #ffffff;
+
+  /*
+     Tooltips / Drag
+  */
+
+  -jr-tooltip-fg: #eceff4;
+
+  -jr-drag-target: #81a1c1;
+  -jr-drag-target-hover: #88c0d0;
+
+  /*
+     Summary Text
+  */
+
+  -jr-summary-text-color: #b8c0d0;
+  -jr-summary-text-color-selected: #ffffff;
+
+  /*
+     Typography
+  */
+
+  -fx-font-family: "SpaceMono Nerd Font", "JetBrains Mono", monospace;
   -fx-font-size: 10pt;
 
-  /* Accent contrast */
-  -jr-accent-contrast: #000000;
-
-  /* Selection defaults */
-  -fx-selection-bar: -jr-accent;
-  -fx-selection-bar-non-focused: -jr-accent;
-  -fx-selection-bar-text: -jr-accent-contrast;
-  -fx-highlight-fill: -jr-accent;
-  -fx-highlight-text-fill: -jr-accent-contrast;
-
-  -jr-menu-forground-active: -jr-accent-contrast;
+  /* FIXED TYPO */
+  -jr-menu-foreground-active: #ffffff;
 }
 
-.unchanged { }
+/* 
+   Diff Colors
+*/
 
 .addition {
-  -rtfx-background-color: -jr-green;
+  -rtfx-background-color: rgba(163, 190, 140, 0.28);
 }
 
 .deletion {
-  -rtfx-background-color: -jr-red;
+  -rtfx-background-color: rgba(191, 97, 106, 0.32);
 }
+
+/* 
+   Preview
+*/
 
 #previewBody {
   background-color: #2e3440;
-  color: #d8dee9; /* Snow Storm 0 */
+  color: #eceff4;
 }
+
+/* 
+   Dialogs
+*/
 
 .custom-color-dialog {
   -fx-background-color: -fx-control-inner-background;
 }
+
+/* 
+   Tables
+*/
 
 .table-row-cell:odd {
   -fx-background-color: #2e3440;
 }
 
 .table-row-cell:even {
-  -fx-background-color: #3b4252;
+  -fx-background-color: #353c4a;
 }
 
 .table-row-cell:hover,
 .tree-table-row-cell:hover {
-  -fx-background-color: -jr-hover;
+  -fx-background-color: #465063;
+}
+
+.table-row-cell:selected,
+.tree-table-row-cell:selected,
+.list-cell:selected {
+  -fx-background-color: #5e81ac;
+  -fx-text-fill: #ffffff;
+}
+
+.table-row-cell:selected .text,
+.tree-table-row-cell:selected .text {
+  -fx-fill: #ffffff;
 }
 
 .merge-field-value .action-icon {
   -fx-blend-mode: none;
-  -fx-opacity: 90%;
+  -fx-opacity: 1;
 }
 
 .merge-header-cell {
   -fx-border-width: 0 0 1 0;
-  -fx-border-color: -fx-outer-border;
-  -fx-background-color: -jr-row-odd-background;
+  -fx-border-color: #4c566a;
+  -fx-background-color: #313845;
 }
 
 .merge-header {
-  -fx-background-color: -jr-row-odd-background;
+  -fx-background-color: #313845;
 }
 
 .table-view .groupColumnBackground {
-  -fx-stroke: #434c5e; /* Polar Night 2 */
+  -fx-stroke: #434c5e;
+}
+
+/* 
+   Code Area
+*/
+
+.code-area {
+  -fx-background-color: #2e3440;
 }
 
 .code-area .lineno {
-  -fx-background-color: -jr-background-alt;
-  -fx-text-fill: -fx-mid-text-color;
+  -fx-background-color: #3b4252;
+  -fx-text-fill: #aeb8c8;
+}
+
+.code-area .selection,
+.styled-text-area .selection {
+  -fx-background-color: #5e81ac;
+}
+
+.code-area .selection .text,
+.styled-text-area .selection .text {
+  -fx-fill: white;
 }
 
 .text-unchanged {
-  -fx-fill: -fx-light-text-color;
+  -fx-fill: #e5e9f0;
 }
 
-.radio-button > .radio {
-  -fx-background-color: -fx-light-text-color, -fx-control-inner-background;
+/* 
+   Inputs
+*/
+
+.text-input,
+.text-field,
+.text-area {
+  -fx-background-color: #3b4252;
+  -fx-text-fill: #eceff4;
+
+  -fx-highlight-fill: #5e81ac;
+  -fx-highlight-text-fill: white;
+
+  -fx-prompt-text-fill: #8b93a6;
+
+  -fx-background-radius: 4;
+  -fx-border-color: #4c566a;
+  -fx-border-radius: 4;
 }
+
+.text-input:focused,
+.text-field:focused,
+.text-area:focused {
+  -fx-border-color: #81a1c1;
+  -fx-border-width: 1.5;
+}
+
+/* 
+   Radio / Checkbox
+*/
+
+.radio-button > .radio,
+.check-box > .box {
+  -fx-background-color: #4c566a, #3b4252;
+}
+
+.check-box:selected .mark,
+.radio-button:selected .dot {
+  -fx-background-color: #88c0d0;
+}
+
+/* 
+   Number Column
+*/
 
 .numberColumn > .hits:any-selected {
-  -fx-background-color: derive(#434c5e, 25%);
+  -fx-background-color: #5b6c86;
 }
 
 .numberColumn > .hits:all-selected {
-  -fx-background-color: #434c5e;
+  -fx-background-color: #81a1c1;
 }
+
+/* 
+   Tabs
+*/
 
 #preferencesContainer .tab-pane > .tab-header-area > .tab-header-background {
   -fx-background-color: #2e3440;
 }
 
+/* 
+   Toolbar Search Icons
+*/
+
 .mainToolbar .search-field .button .glyph-icon {
-  -fx-fill: derive(-fx-light-text-color, 80%);
-  -fx-text-fill: derive(-fx-light-text-color, 80%);
-  -fx-icon-color: derive(-fx-light-text-color, 80%);
+  -fx-fill: #cfd6e4;
+  -fx-text-fill: #cfd6e4;
+  -fx-icon-color: #cfd6e4;
 }
 
 .mainToolbar .search-field .toggle-button .glyph-icon {
-  -fx-fill: #d8dee9; /* Snow Storm 0 */
-  -fx-text-fill: #d8dee9;
-  -fx-icon-color: #d8dee9;
+  -fx-fill: #eceff4;
+  -fx-text-fill: #eceff4;
+  -fx-icon-color: #eceff4;
 }
 
 .mainToolbar .search-field .toggle-button:selected .glyph-icon {
-  -fx-fill: #000000;
-  -fx-text-fill: #000000;
-  -fx-icon-color: #000000;
+  -fx-fill: white;
+  -fx-text-fill: white;
+  -fx-icon-color: white;
 }
+
+/* 
+   Notifications
+*/
 
 .notification-bar > .pane {
-  -fx-background-color: -fx-light-text-color;
+  -fx-background-color: #434c5e;
 }
 
+/* 
+   Rating
+*/
+
 .rating > .container > .button {
-  -fx-icon-color: derive(-fx-light-text-color, -49%);
+  -fx-icon-color: #7f8ba3;
 }
 
 .rating > .container > .button.strong {
-  -fx-icon-color: -fx-light-text-color;
+  -fx-icon-color: #ebcb8b;
 }
 
-/* enforce black text on selection across controls */
-.list-cell:filled:selected,
-.tree-cell:filled:selected,
-.table-row-cell:selected,
-.tree-table-row-cell:selected,
-.table-row-cell:selected .text,
-.tree-table-row-cell:selected .text {
-  -fx-text-fill: #000000;
+/* 
+   Buttons
+*/
+
+.button,
+.toggle-button {
+  -fx-background-color: #434c5e;
+  -fx-text-fill: #eceff4;
+
+  -fx-background-radius: 5;
+  -fx-border-radius: 5;
+
+  -fx-border-color: #4c566a;
 }
 
-.table-view:focused .table-row-cell:selected,
-.table-view .table-row-cell:selected,
-.tree-table-view:focused .tree-table-row-cell:selected,
-.tree-table-view .tree-table-row-cell:selected,
-.list-view:focused .list-cell:selected,
-.list-view .list-cell:selected {
-  -fx-background-color: -jr-accent;
-  -fx-text-fill: #000000;
-}
-
-.text-input:focused,
-.text-input {
-  -fx-highlight-fill: -jr-accent;
-  -fx-highlight-text-fill: #000000;
-}
-
-.code-area .selection,
-.styled-text-area .selection {
-  -fx-background-color: -jr-accent;
-}
-
-.code-area .selection *.text,
-.styled-text-area .selection *.text {
-  -fx-fill: #000000;
+.button:hover,
+.toggle-button:hover {
+  -fx-background-color: #4c566a;
 }
 
 .toggle-button:selected,
 .button:selected,
 .button:default {
-  -fx-text-fill: #000000;
+  -fx-background-color: #5e81ac;
+  -fx-text-fill: white;
 }
 
 .toggle-button:selected .glyph-icon,
 .button:selected .glyph-icon,
 .button:default .glyph-icon {
-  -fx-fill: #000000;
-  -fx-text-fill: #000000;
-  -fx-icon-color: #000000;
+  -fx-fill: white;
+  -fx-text-fill: white;
+  -fx-icon-color: white;
+}
+
+/* 
+   Menus
+*/
+
+.menu-item:focused {
+  -fx-background-color: #5e81ac;
 }
 
 .menu-item:focused .label,
 .menu-item:focused .label .text {
-  -fx-text-fill: #000000;
+  -fx-text-fill: white;
 }
+
+/* 
+   Misc
+*/
 
 .check-box:selected .text,
 .radio-button:selected .text {
-  -fx-fill: #000000;
+  -fx-fill: #eceff4;
 }
-
