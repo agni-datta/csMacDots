@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# csFedoraDots - Fedora Dotfiles Update Script
+# csMacDots - Fedora Dotfiles Update Script
 # Description: Automatically updates and syncs dotfiles using yadm
 # Author: agnid
-# Repository: https://github.com/agni-datta/csFedoraDots
+# Repository: https://github.com/agni-datta/csMacDots
 
 set -e # Exit on any error
 
@@ -157,7 +157,7 @@ done
 
 # Main execution
 main() {
-  print_status "Starting csFedoraDots update process..."
+  print_status "Starting csMacDots update process..."
   echo
 
   # Check if yadm is available
@@ -200,7 +200,7 @@ main() {
   fi
 
   echo
-  print_success "csFedoraDots update process completed!"
+  print_success "csMacDots update process completed!"
 
   # Show final status unless quiet mode
   if [[ "$QUIET" == false ]]; then
@@ -212,4 +212,3 @@ main() {
 
 # Run main function
 main "$@"
-
