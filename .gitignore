@@ -75,7 +75,11 @@ Movies/
 Music/
 Pictures/
 Public/
-Google Drive
+Google Drive/
+Desktop/
+Documents/
+Downloads/
+.Trash/
 
 # Personal sensitive files
 secrets/
