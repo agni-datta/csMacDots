@@ -6,9 +6,11 @@ date created: Friday, March 6th 2026, 9:35:11 pm
 date modified: Friday, March 6th 2026, 9:39:07 pm
 ---
 
-## csDots: Configuration Layout and Sync Workflow
+<!-- @format -->
 
-This document describes the structure of the csDots dotfiles repository and
+## csMacDots: Configuration Layout and Sync Workflow
+
+This document describes the structure of the csMacDots dotfiles repository and
 
 the operation of the `update-dotfiles.sh` synchronisation script.
 
@@ -28,16 +30,18 @@ paths below are relative to the home directory.
 ├── .gitignore                     # Global Git ignore rules
 └── .config/
     ├── alacritty/                 # Alacritty terminal emulator config + themes
+    ├── antigravity/               # Antigravity assistant config
     ├── bat/                       # bat (cat replacement) config and themes
     ├── btop/                      # btop system monitor config and themes
     ├── cava/                      # cava audio visualiser config and shaders
     ├── cursor/                    # Cursor editor settings and keybindings
+    ├── devin/                     # Devin AI assistant config
     ├── docs/                      # Documentation for this repository
     ├── eza/                       # eza (ls replacement) theme
     ├── fastfetch/                 # fastfetch system info config
     ├── fzf/                       # fzf fuzzy finder shell integration
+    ├── gh/                        # GitHub CLI config
     ├── git/                       # Per-directory .gitconfig (XDG location)
-    ├── github-copilot/            # GitHub Copilot version state
     ├── homebrew/                  # installed_brew.conf: list of installed formulae
     ├── jabref/                    # JabRef reference manager theme
     ├── kitty/                     # Kitty terminal emulator config and themes
@@ -45,26 +49,24 @@ paths below are relative to the home directory.
     ├── linearmouse/               # LinearMouse pointer customisation
     ├── nnn/                       # nnn file manager plugins
     ├── nvim/                      # Neovim config (LazyVim-based)
+    ├── opencode/                  # Opencode config
     ├── profile/                   # Profile photo asset
     ├── raycast/                   # Raycast launcher extensions
+    ├── starship/                  # Starship config directory
     ├── starship.toml              # Starship cross-shell prompt config
-    ├── texstudio/                 # TeXstudio editor config and completions
+    ├── update-dotfiles.sh         # Active sync script (canonical location)
     ├── vscode/                    # VS Code settings, keybindings, extensions list
-    ├── wallpaper                  # Wallpaper image
-    ├── warp/                      # Warp terminal themes and preferences
-    ├── yadm/
-    │   └── update-dotfiles.sh     # Active sync script (canonical location)
+    ├── yadm/                      # yadm config
     ├── zathura/                   # Zathura PDF viewer config
     ├── zellij/                    # Zellij terminal multiplexer config
-    └── zsh/
-        └── .zshrc                 # Zsh config (XDG-compliant location)
+    └── zsh/                       # Zsh config (XDG-compliant location)
 ```
 
 ---
 
 ### The Sync Script: `update-dotfiles.sh`
 
-**Canonical path:** `~/.config/yadm/update-dotfiles.sh`
+**Canonical path:** `~/.config/update-dotfiles.sh`
 
 The script automates the full pull → stage → commit → push cycle for YADM.
 
@@ -87,44 +89,44 @@ When called with no arguments, the script:
 
 ```sh
 # Default: pull, stage, commit, push
-bash ~/.config/yadm/update-dotfiles.sh
+bash ~/.config/update-dotfiles.sh
 
 # Custom commit message
-bash ~/.config/yadm/update-dotfiles.sh "tweak kitty theme"
+bash ~/.config/update-dotfiles.sh "tweak kitty theme"
 
 # Show status only, no changes
-bash ~/.config/yadm/update-dotfiles.sh --status
+bash ~/.config/update-dotfiles.sh --status
 
 # Pull only, skip commit and push
-bash ~/.config/yadm/update-dotfiles.sh --pull-only
+bash ~/.config/update-dotfiles.sh --pull-only
 
 # Stage and commit but do not push
-bash ~/.config/yadm/update-dotfiles.sh --no-push
+bash ~/.config/update-dotfiles.sh --no-push
 
 # Preview commands without executing mutating steps
-bash ~/.config/yadm/update-dotfiles.sh --dry-run
+bash ~/.config/update-dotfiles.sh --dry-run
 ```
 
 #### All Options
 
-| Flag | Description |
-|---|---|
-| `-h`, `--help` | Show help text |
-| `-s`, `--status` | Show status and exit |
-| `-P`, `--pull-only` | Pull with rebase then exit |
-| `-n`, `--no-push` | Skip the push step |
-| `-b`, `--branch <name>` | Target branch for push (default: `main`) |
-| `-m`, `--message <msg>` | Explicit commit message |
-| `-q`, `--quiet` | Suppress informational output |
-| `--dry-run` | Print commands without running mutating steps |
-| `--no-status` | Skip the pre-commit status display |
+| Flag                    | Description                                   |
+| ----------------------- | --------------------------------------------- |
+| `-h`, `--help`          | Show help text                                |
+| `-s`, `--status`        | Show status and exit                          |
+| `-P`, `--pull-only`     | Pull with rebase then exit                    |
+| `-n`, `--no-push`       | Skip the push step                            |
+| `-b`, `--branch <name>` | Target branch for push (default: `main`)      |
+| `-m`, `--message <msg>` | Explicit commit message                       |
+| `-q`, `--quiet`         | Suppress informational output                 |
+| `--dry-run`             | Print commands without running mutating steps |
+| `--no-status`           | Skip the pre-commit status display            |
 
 #### Environment Variable
 
 The default push branch can be overridden without touching the script:
 
 ```sh
-YADM_SYNC_BRANCH=feature-branch bash ~/.config/yadm/update-dotfiles.sh
+YADM_SYNC_BRANCH=feature-branch bash ~/.config/update-dotfiles.sh
 ```
 
 ---
@@ -134,6 +136,6 @@ YADM_SYNC_BRANCH=feature-branch bash ~/.config/yadm/update-dotfiles.sh
 - The script stages **only files under `.config`**. Root-level dotfiles
   (`.zshrc`, `.bashrc`, `.gitconfig`, `.gitignore`) must be staged manually
   with `yadm add` when changed.
-- The remote is `https://github.com/agni-datta/csDots.git`, branch `main`.
+- The remote is `https://github.com/agni-datta/csMacDots.git`, branch `main`.
 - Neovim configuration at `~/.config/nvim` is tracked as individual files,
   not as a submodule.

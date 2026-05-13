@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# csMacDots - Fedora Dotfiles Update Script
+# csMacDots - MacOS Dotfiles Update Script
 # Description: Automatically updates and syncs dotfiles using yadm
 # Author: agnid
 # Repository: https://github.com/agni-datta/csMacDots

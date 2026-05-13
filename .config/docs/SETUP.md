@@ -6,13 +6,15 @@ date created: Friday, March 6th 2026, 9:35:03 pm
 date modified: Friday, March 6th 2026, 9:39:28 pm
 ---
 
+<!-- @format -->
+
 ```table-of-contents
-title: 
+title:
 style: nestedList # TOC style (nestedList|nestedOrderedList|inlineFirstLevel)
 minLevel: 0 # Include headings from the specified level
 maxLevel: 0 # Include headings up to the specified level
-include: 
-exclude: 
+include:
+exclude:
 includeLinks: true # Make headings clickable
 hideWhenEmpty: false # Hide TOC if no headings are found
 debugInConsole: false # Print debug info in Obsidian console
@@ -72,7 +74,7 @@ yadm commit -m "Initial commit"
 Link it to a remote repository:
 
 ```sh
-yadm remote add origin https://github.com/<username>/<repo>.git
+yadm remote add origin https://github.com/agni-datta/csMacDots.git
 yadm push -u origin main
 ```
 
@@ -83,7 +85,7 @@ yadm push -u origin main
 On a new machine, restore all tracked dotfiles with a single command:
 
 ```sh
-yadm clone https://github.com/<username>/<repo>.git
+yadm clone https://github.com/agni-datta/csMacDots.git
 ```
 
 YADM will check out all tracked files into the home directory. If local files
@@ -94,14 +96,14 @@ already exist and conflict, YADM creates a stash automatically.
 
 ### Core Workflow
 
-| Task | Command |
-|---|---|
-| Track a new file | `yadm add <file>` |
-| Stop tracking a file | `yadm rm --cached <file>` |
-| View tracked changes | `yadm status` |
-| Commit changes | `yadm commit -m "message"` |
-| Push to remote | `yadm push origin main` |
-| Pull latest changes | `yadm pull --rebase --autostash` |
+| Task                 | Command                          |
+| -------------------- | -------------------------------- |
+| Track a new file     | `yadm add <file>`                |
+| Stop tracking a file | `yadm rm --cached <file>`        |
+| View tracked changes | `yadm status`                    |
+| Commit changes       | `yadm commit -m "message"`       |
+| Push to remote       | `yadm push origin main`          |
+| Pull latest changes  | `yadm pull --rebase --autostash` |
 
 ---
 
@@ -126,7 +128,7 @@ committing via `yadm encrypt` and a `.config/yadm/encrypt` manifest.
 brew install yadm
 
 # 2. Clone dotfiles
-yadm clone https://github.com/<username>/<repo>.git
+yadm clone https://github.com/agni-datta/csMacDots.git
 
 # 3. Done — all tracked files are in place
 ```
@@ -154,5 +156,5 @@ yadm branch --set-upstream-to=origin/main main
 Add it manually.
 
 ```sh
-yadm remote add origin https://github.com/<username>/<repo>.git
+yadm remote add origin https://github.com/agni-datta/csMacDots.git
 ```

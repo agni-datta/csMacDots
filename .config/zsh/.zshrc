@@ -43,7 +43,7 @@ export GPG_TTY="$(tty)"
 
 # Better colors
 if command -v vivid &>/dev/null; then
-  export LS_COLORS="$(vivid generate catppuccin-mocha)"
+  export LS_COLORS="$(vivid generate nord)"
 fi
 
 ################################################################################
@@ -201,34 +201,34 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 ################################################################################
 
 # Navigation
-alias ..='cd ..'
-alias ...='cd ../..'
 alias ....='cd ../../..'
-alias home='cd ~'
+alias ...='cd ../..'
+alias ..='cd ..'
 alias desktop='cd ~/Desktop'
+alias home='cd ~'
 
 # Utilities
 alias c='clear'
-alias h='history'
 alias df='df -h'
 alias du='du -sh'
-alias today='date "+%Y-%m-%d"'
-alias now='date "+%H:%M:%S"'
 alias getip='curl -s ifconfig.me'
+alias h='history'
+alias now='date "+%H:%M:%S"'
+alias today='date "+%Y-%m-%d"'
 
 # Editors
 alias vi='nvim'
 alias vim='nvim'
 
 # Monitoring
-alias top='btop'
 alias cpu='btop'
+alias top='btop'
 
 # eza
-alias ls='eza --color=auto --icons=auto'
 alias l='eza -lh --icons=auto'
 alias la='eza -a --icons=auto'
 alias ll='eza -alF --icons=auto'
+alias ls='eza --color=auto --icons=auto'
 alias lsa='eza -A --icons=auto'
 alias tree='eza --tree --icons=auto'
 
@@ -250,17 +250,17 @@ mkz() {
 extract() {
   if [[ -f "$1" ]]; then
     case "$1" in
+    *.7z) 7z x "$1" ;;
+    *.Z) uncompress "$1" ;;
+    *.bz2) bunzip2 "$1" ;;
+    *.gz) gunzip "$1" ;;
+    *.rar) unrar x "$1" ;;
+    *.tar) tar xf "$1" ;;
     *.tar.bz2) tar xjf "$1" ;;
     *.tar.gz) tar xzf "$1" ;;
-    *.bz2) bunzip2 "$1" ;;
-    *.rar) unrar x "$1" ;;
-    *.gz) gunzip "$1" ;;
-    *.tar) tar xf "$1" ;;
     *.tbz2) tar xjf "$1" ;;
     *.tgz) tar xzf "$1" ;;
     *.zip) unzip "$1" ;;
-    *.Z) uncompress "$1" ;;
-    *.7z) 7z x "$1" ;;
     *) echo "Cannot extract $1" ;;
     esac
   else
