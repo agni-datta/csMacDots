@@ -1,0 +1,1 @@
+/Users/agnidatta/.config/zsh/.zshrc
