@@ -7,7 +7,7 @@
 ################################################################################
 
 # Prevent duplicate PATH entries
-typeset -U path PATH
+typeset -U path PATH fpath FPATH
 
 # Homebrew (Apple Silicon)
 if [[ -x /opt/homebrew/bin/brew ]]; then
@@ -18,6 +18,11 @@ if [[ -x /opt/homebrew/bin/brew ]]; then
     "$HOMEBREW_PREFIX/sbin"
     $path
   )
+
+  # So `brew` tab completion can autoload `_brew` (avoids "_brew: function definition file not found")
+  if [[ -d "$HOMEBREW_PREFIX/share/zsh/site-functions" ]]; then
+    fpath=("$HOMEBREW_PREFIX/share/zsh/site-functions" $fpath)
+  fi
 fi
 
 # User binaries
@@ -135,7 +140,6 @@ fi
 if [[ -f "$ZINIT_HOME/zinit.zsh" ]]; then
   source "$ZINIT_HOME/zinit.zsh"
 
-  zinit ice blockf
   zinit light zsh-users/zsh-completions
 
   autoload -Uz compinit
@@ -154,15 +158,12 @@ if [[ -f "$ZINIT_HOME/zinit.zsh" ]]; then
   zinit snippet OMZL::git.zsh
 
   # Autosuggestions
-  zinit ice wait lucid atload'_zsh_autosuggest_start'
   zinit light zsh-users/zsh-autosuggestions
 
   # Autopair
-  zinit ice wait lucid
   zinit light hlissner/zsh-autopair
 
   # Fast syntax highlighting (lighter than zsh-syntax-highlighting)
-  zinit ice wait lucid
   zinit light zdharma-continuum/fast-syntax-highlighting
 fi
 
