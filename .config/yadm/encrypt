@@ -1,0 +1,3 @@
+# Exact authentication files only; never add these plaintext files to Git.
+.codex/auth.json
+.codex-switcher/accounts.json

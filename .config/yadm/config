@@ -1,3 +1,7 @@
 [remote "origin"]
 	url = https://github.com/agni-datta/csMacDots.git
 	fetch = +refs/heads/*:refs/remotes/origin/*
+
+[yadm]
+	cipher = gpg
+	gpg-recipient = 33079A6E42F6527870AD649383AF83DA47DE7F22

@@ -1,0 +1,6 @@
+{
+  "effortLevel": "high",
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true,
+  "model": "opus[1m]"
+}

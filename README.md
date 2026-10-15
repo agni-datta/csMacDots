@@ -32,6 +32,20 @@ bash -n .config/update-dotfiles.sh
 
 The symlink and update scripts can move files, stage changes, commit, or push. Read them before running any mutating path.
 
+### AI Configuration Backups
+
+yadm manages only `.claude/CLAUDE.md`, `.claude/settings.json`, `.codex/AGENTS.md`, `.codex/config.toml`, and `.codex-switcher/settings.json`. The ignore rules exclude the remaining contents of those folders.
+
+The exact paths in `.config/yadm/encrypt` select `.codex/auth.json` and `.codex-switcher/accounts.json` for GPG encryption. Their local copies remain available to the applications. The encrypted archive is `.local/share/yadm/archive`; its recipient is the existing GPG key configured in `.config/yadm/config`. Keep the matching private key available separately for recovery.
+
+After authentication changes, refresh the encrypted backup:
+
+```sh
+yadm encrypt
+```
+
+Inspect an archive's file list with `yadm decrypt -l`. On a replacement machine, import the matching GPG private key before using `yadm decrypt` to restore credentials; decryption writes the archived files into the home directory. Refreshing the archive does not commit or push it.
+
 ### License
 
 No separate license is provided; applicable law reserves all otherwise ungranted rights.

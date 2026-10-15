@@ -45,13 +45,20 @@ cache/
 
 # AI/IDE tool state (auto-managed, not hand-edited)
 .antigravity/
-.claude/
+/.claude/*
+!/.claude/CLAUDE.md
+!/.claude/settings.json
 .claude.json
 .cursor/
 .gemini/
 .windsurf/
 .redhat/
-.local/
+/.local/*
+!/.local/share/
+/.local/share/*
+!/.local/share/yadm/
+/.local/share/yadm/*
+!/.local/share/yadm/archive
 
 # Raycast extension bundles (auto-updated by Raycast)
 .config/raycast/extensions/
@@ -92,3 +99,10 @@ private/
 .config/xnviewmp/Thumb.db
 .config/xnviewmp/XnView.db
 .config/xnviewmp/xnview.ini
+
+# Selected Codex settings only; authentication belongs in the encrypted archive.
+/.codex/*
+!/.codex/AGENTS.md
+!/.codex/config.toml
+/.codex-switcher/*
+!/.codex-switcher/settings.json

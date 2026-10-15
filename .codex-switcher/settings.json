@@ -1,0 +1,5 @@
+{
+  "tray_display_mode": "active_usage_text",
+  "dock_display_mode": "show_in_dock",
+  "close_behavior_prompt_enabled": false
+}
