@@ -104,10 +104,6 @@ args = ["mcp"]
 cwd = "."
 enabled = false
 
-[mcp_servers.cs-latex]
-command = "/Users/agnidatta/Drive/Repositories/Tools/LaTeX/csLaTeXMCP/scripts/launch-mcp.sh"
-args = []
-
 [shell_environment_policy.set]
 NODE_REPL_TRUSTED_BROWSER_CLIENT_SHA256S = "583bf903a6cfb9b00a01e1583381ce921c71d7585085c6fa6b805baa0f60230b,6d25aa7656feac858f3a3bdaea5bcbab0dbfd426c9de8e6931ce90c399ee8e4f"
 
@@ -144,3 +140,19 @@ screen_reader_detection_done = true
 
 [tui.model_availability_nux]
 "gpt-6.1-sol" = 1
+
+[mcp_servers.cs-latex]
+command = "sh"
+args = ["/Users/agnidatta/Drive/Repositories/Tools/LaTeX/csLaTeXMCP/scripts/launch-mcp.sh"]
+cwd = "/Users/agnidatta/Drive/Repositories"
+
+[mcp_servers.cs-latex.env]
+LATEX_BASE = "/Users/agnidatta/Drive/Repositories"
+
+[mcp_servers.cs-website]
+command = "sh"
+args = ["/Users/agnidatta/Drive/Repositories/Tools/LaTeX/csLaTeXMCP/scripts/launch-website-mcp.sh"]
+cwd = "/Users/agnidatta/Drive/Repositories"
+
+[mcp_servers.cs-website.env]
+LATEX_BASE = "/Users/agnidatta/Drive/Repositories"
